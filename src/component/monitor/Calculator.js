@@ -7,8 +7,8 @@ class Calculator extends Component{
           return  order.map(idx=>{
                return ( 
                <li className='text-right text-success title'>
-                    {idx.product.productName} x {idx.quantity} = {idx.product.unitePrice * idx.quantity}
-                    <button className='btn btn-light btn-sm ml-1 '>X</button>
+                    {idx.product.productName} x {idx.quantity} = {parseInt(idx.product.unitPrice) * idx.quantity}
+                    <button className='btn btn-light btn-sm ml-1 ' onClick={()=>this.props.onDeleteOrder(idx.product)} >X</button>
                     {console.log(order.length)}
                </li>
                     )
