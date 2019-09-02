@@ -54,7 +54,7 @@ class Monitor extends Component{
  } 
  comfirmOrder(){
      if(this.state.order.length>0){
-    axios.post('http://localhost:3001/orders',{
+    axios.post('http://localhost:3000/orders',{
         orderDate : new Date(),
         totalPrice :this.state.totalPrice,
         order : this.state.order
@@ -66,6 +66,11 @@ class Monitor extends Component{
             message : ' saved order', 
         });   
     })
+    setInterval(() => {
+        this.setState({
+            confirm:false
+        })
+    }, 2000);
     console.log('confirm order', this.state.order)
 } else{
     this.setState({
@@ -74,6 +79,11 @@ class Monitor extends Component{
         confirm:true,
         message : ' Please order something in your cart before confirm', 
     }); 
+    setInterval(() => {
+        this.setState({
+            confirm:false
+        })
+    }, 2000);
 }
  }
     

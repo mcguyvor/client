@@ -5,10 +5,19 @@ class ProductList extends Component{
     showProduct(){
             if(this.props.products){
                 return(this.props.products.map(idx=>(
-                    <ProductItem product={idx}  key={idx.productId} productName={idx.productName} unitePrice={idx.unitPrice} thumbnail={idx.thumbnail} onAddOrder={this.props.onAddOrder}/>)
-                    ));
+                    <ProductItem product={idx} 
+                     key={idx.productId} 
+                     productName={idx.productName} 
+                     unitePrice={idx.unitPrice} 
+                     thumbnail={idx.thumbnail} 
+                     onAddOrder={this.props.onAddOrder}
+                    onDeleteProduct ={this.props.onDeleteProduct}
+                     /> 
+                                                    )
+                                                )
+                    );
+                }
             }
-        }
     
     render(){
         return(

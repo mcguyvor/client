@@ -53,6 +53,22 @@
         }
       ],
       "id": 3
+    },
+    {
+      "orderDate": "2019-09-01T16:52:28.616Z",
+      "totalPrice": 120,
+      "order": [
+        {
+          "product": {
+            "productId": "P003",
+            "productName": "บิงซู",
+            "unitPrice": "120",
+            "thumbnail": "/images/product/3.jpg"
+          },
+          "quantity": 1
+        }
+      ],
+      "id": 11
     }
   ]
 }

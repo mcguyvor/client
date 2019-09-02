@@ -14,7 +14,7 @@ import axios from 'axios'
 
      }
     async componentDidMount(){
-         const response = await axios.get('http://localhost:3001/orders');
+         const response = await axios.get('http://localhost:3000/orders');
          this.setState({
              order : response.data
          });
@@ -26,8 +26,8 @@ import axios from 'axios'
      }
     async deleteOrder(order){
         console.log(order);
-        await axios.delete('http://localhost:3001/orders/'+order );
-         const response =  await axios.get('http://localhost:3001/orders/');
+        await axios.delete('http://localhost:3000/orders/'+order );
+         const response =  await axios.get('http://localhost:3000/orders/');
         this.setState({
             order : response.data
         })
@@ -36,24 +36,35 @@ import axios from 'axios'
      showOrder(){
         return this.state.order && this.state.order.map(idx => {
             const date = new Date(idx.orderDate);
+            
             return(
-                <div key={idx.id} className='col-md-3'>
-                    <hr/>
-                    <p className='text-right'>
-                        <button className='btn btn-danger btn-sm title' onClick={this.handleClick} value={idx.id}></button>
-                    </p>
-                    <h5>Date {date.toLocaleDateString} {date.toLocaleTimeString}</h5>
-                    <ul>
-                        {idx.order && idx.order.map(idx=>{
-                            return(
-                                <li key = {idx.id}>
-                                    {idx.product.productName} x {idx.quantity} = {parseInt(idx.product.unitPrice) * idx.quantity}
-                                </li>
-                            );
-                        }) }
-                    </ul> 
-                    <p className="title">Total {idx.totalPrice}</p>
+                
+                <div key={idx.id} className='col-md-3 mt-4'>
+                    <div className='card text-white bg-success md-3 shadow-lg'>
+                        <div className='card-body'>
+                            <hr/>
+                            <div className='d-flex justify-content-between'>
+                                <h5>Date {date.toLocaleDateString()} {date.toLocaleTimeString()}</h5>
+                                <p className='text-right'>
+                                    <button className='btn btn-danger  title' onClick={this.handleClick} value={idx.id}>X</button>
+                                </p>
+                            
+                            </div>
+                            {console.log(`date : ${date.toLocaleDateString}`)}
+                            <ul>
+                                {idx.order && idx.order.map(idx=>{
+                                    return(
+                                        <li key = {idx.id}>
+                                            {idx.product.productName} x {idx.quantity} = {parseInt(idx.product.unitPrice) * idx.quantity}
+                                        </li>
+                                    );
+                                }) }
+                            </ul> 
+                            <p className="title">Total : {idx.totalPrice}</p>
+                        </div>
+                    </div>
                 </div>
+            
             )
         });
      }
@@ -63,7 +74,10 @@ import axios from 'axios'
                  <Header/>
                     <div className='container-fluid'>
                         <h1 className='title'>Cart</h1>
+                        <div className='row'>
                             {this.showOrder()}
+                        </div>
+                        
                     </div>
                  <Footer Email='noppawatchotiwan@gmail.com'/>
              </div>

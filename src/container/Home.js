@@ -17,8 +17,8 @@ class Home extends Component{
   }
   //fetch api
     async componentDidMount(){
-     // fetch("http://localhost:3001/products",{method: "GET"}).then(res => res.json()).then(res=>{this.setState({products: res})});
-       const products =  await axios.get('http://localhost:3001/products');
+     // fetch("http://localhost:3000/products",{method: "GET"}).then(res => res.json()).then(res=>{this.setState({products: res})});
+       const products =  await axios.get('http://localhost:3000/products');
       this.setState({
         products : products.data
       });
