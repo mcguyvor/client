@@ -1,40 +1,31 @@
  import React, { Component } from 'react';
  import Header from '../../component/Header'
  import Footer from '../../component/Footer'
+ import {connect} from 'react-redux';
+ import {orderFetch,orderDelete} from '../../actions/index'
 import axios from 'axios'
  class Order extends Component{
      constructor(props){
          super(props);
-         this.state={
-             order : []
-         }
+         
          this.deleteOrder = this.deleteOrder.bind(this);
          this.showOrder = this.showOrder.bind(this);
          this.handleClick=this.handleClick.bind(this);
 
      }
-    async componentDidMount(){
-         const response = await axios.get('http://localhost:3000/orders');
-         this.setState({
-             order : response.data
-         });
+     componentDidMount(){
+         this.props.orderFetch();
          
      }
      handleClick(e){
          this.deleteOrder(e.target.value);// send value which is list id
          
      }
-    async deleteOrder(order){
-        console.log(order);
-        await axios.delete('http://localhost:3000/orders/'+order );
-         const response =  await axios.get('http://localhost:3000/orders/');
-        this.setState({
-            order : response.data
-        })
-        console.log(order);
+     deleteOrder(id){
+        this.props.orderDelete(id);
      }
      showOrder(){
-        return this.state.order && this.state.order.map(idx => {
+        return this.props.order && this.props.order.map(idx => {
             const date = new Date(idx.orderDate);
             
             return(
@@ -84,4 +75,7 @@ import axios from 'axios'
          );
      }
  }
- export default Order;
+ function mapStateToProps({order}){
+     return {order};
+ }
+ export default connect(mapStateToProps,{orderFetch,orderDelete})(Order);

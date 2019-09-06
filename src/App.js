@@ -5,6 +5,8 @@ import Home from './container/Home'
 import About from './container/About'
 import Order from './container/order/Order'
 import Product from './container/product/Product'
+import NotFound from'./container/error/NotFound'
+
 
 
 
@@ -17,7 +19,7 @@ class App extends Component{
         <Route exact path='/about' component={About}/>
         <Route exact path='/order' component={Order}/>
         <Route exact path='/product' component={Product}/>
-
+        <Route component={NotFound}/>
       </Switch>
     )
   }

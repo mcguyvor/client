@@ -4,7 +4,9 @@ import uuid from 'uuid'
 class ProductList extends Component{
     showProduct(){
             if(this.props.products){
+                console.log('props',this.props.products);
                 return(this.props.products.map(idx=>(
+                    
                     <ProductItem product={idx} 
                      key={idx.productId} 
                      productName={idx.productName} 
@@ -12,8 +14,9 @@ class ProductList extends Component{
                      thumbnail={idx.thumbnail} 
                      onAddOrder={this.props.onAddOrder}
                     onDeleteProduct ={this.props.onDeleteProduct}
+                    onEditProduct={this.props.onEditProduct}
                      /> 
-                                                    )
+                                              )
                                                 )
                     );
                 }
