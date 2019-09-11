@@ -1,5 +1,6 @@
  import React, { Component } from 'react';
  import {reduxForm,Field} from 'redux-form';
+ import {connect} from 'react-redux'
  import FormField from '../common/FormField'
  import {productFormField} from './formFields';
 class ProductForm extends Component{
@@ -15,7 +16,7 @@ class ProductForm extends Component{
     render(){
         return(
             <div>
-                <form>
+                <form onSubmit={this.props.handleSubmit(this.props.onProductSubmit)}>
                     {this.renderField(productFormField)}
                     <button className='btn btn-block btn-info title 'type='submit'>
                         Save
@@ -37,4 +38,11 @@ function validate(values){
     return error;
 }
 ProductForm = reduxForm({validate, form:'productForm'})(ProductForm);
-export default ProductForm;
+function mapStatetoProps({products}){
+    if(products && products.id){
+    return {initialValue : products}
+    }else{
+        return{};
+    }
+}
+export default connect(mapStatetoProps)(ProductForm);
