@@ -21,6 +21,7 @@ class Home extends Component{
       <div className="Home">
         <Header/>
         <Monitor products={this.props.products}/>
+        {console.log('console',this.props.products)}
         <Footer owner="Mac" Email="noppawatchotiwan@gmail.com"/>
       </div>
     );

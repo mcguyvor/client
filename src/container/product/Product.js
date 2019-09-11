@@ -5,7 +5,9 @@ import axios from 'axios';
 import ProductList from '../../component/product/ProductList';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {productFetch,productDelete} from '../../actions';
+import {productFetch,productDelete,productsFetch} from '../../actions';
+import {Link} from 'react-router-dom';
+
 class Product extends Component {
     constructor (props) {
         super(props)
@@ -13,7 +15,7 @@ class Product extends Component {
         this.editProduct = this.editProduct.bind(this);
     }
      componentDidMount(){
-        this.props.productFetch();
+        this.props.productsFetch();
     }
      deleteProduct(id){
         this.props.productDelete(id);
@@ -21,7 +23,7 @@ class Product extends Component {
         
      }
      editProduct(id){
-        this.props.history.push('products/edit'+id);
+        this.props.history.push('products/edit/'+id);
      }
     
     render(){
@@ -34,8 +36,9 @@ class Product extends Component {
                                 <h1>Products</h1>
                             </div>
                             <div className='col-6'>
-                                <button className='btn  btn-success title float-right' 
+                                <Link to='product/add'><button className='btn  btn-success title float-right' 
                                 onClick={()=>this.props.history.push('products')}>Add</button>
+                                </Link>
                             </div>
                         </div>   
                         <ProductList products={this.props.products} 
@@ -50,4 +53,4 @@ class Product extends Component {
 function mapStateToProps({products}){
     return {products};
 }
-export default  withRouter(connect(mapStateToProps,{productFetch,productDelete})(Product));
+export default  withRouter(connect(mapStateToProps,{productsFetch,productDelete,productFetch})(Product));
