@@ -29,7 +29,7 @@ class ProductItem extends Component{
                 <button className='btn btn-block btn-secondary title' onClick={()=> this.props.onAddOrder(this.props.product)} value={this.props.product.id}>Buy</button>
                 }
                 {(this.props.onEditProduct || this.props.onDeleteProduct) &&
-                <Link to ='/product/edit/:id'><button className='btn btn-info title col-5 ' onClick={this.handleEdit} value={this.props.product.id}>Edit</button></Link>
+                <Link to ={'/products/edit/'+this.props.product.id}><button className='btn btn-info title col-5 ' onClick={this.handleEdit} value={this.props.product.id}>Edit</button></Link>
                 }
                 {this.props.onDeleteProduct &&
                 <button className='btn  btn-danger title col-5 float-right' value={this.props.product.id} onClick={this.handleDelete}>Delete</button>

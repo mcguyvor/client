@@ -3,32 +3,32 @@ import {PRODUCTS_FETCH, PRODUCT_CREATE,PRODUCT_FETCH,PRODUCT_UPDATE} from './typ
 
 export const productFetch = id=>{
     return async dispatch => {
-        const response = await axios.get('http://localhost:3000/products/'+id);
+        const response = await axios.get(process.env.REACT_APP_API_URL+'/products/'+id);
         dispatch({type: PRODUCT_FETCH, payload: response.data});
     }
 } 
 export const productsFetch =()=>{
    return async dispatch => {
-      const response= await axios.get('http://localhost:3000/products/');
+      const response= await axios.get(process.env.REACT_APP_API_URL+'/products/');
            dispatch({type:PRODUCTS_FETCH,payload: response.data});        
     } ;
 };
 export const productDelete =(id)=>{
     return async dispatch =>{
-        await axios.delete('http://localhost:3000/products/'+id);
-        const response = await axios.get('http://localhost:3000/products/');
+        await axios.delete(process.env.REACT_APP_API_URL+'/products/'+id);
+        const response = await axios.get(process.env.REACT_APP_API_URL+'/products/');
         dispatch({type:PRODUCTS_FETCH,payload: response.data});
     }
 };
 export const productCreate = values =>{
     return async dispatch =>{
-        await axios.post('http://localhost:3000/products/'.values);
+        await axios.post(process.env.REACT_APP_API_URL+'/products/',values);
         dispatch({type: PRODUCT_CREATE});
     }
 };
 export const productUpdate = (id,values) =>{
     return async dispatch =>{
-        await axios.put('http://localhost:3000/products/'+id, values);
+        await axios.put(process.env.REACT_APP_API_URL+'/products/'+id, values);
         dispatch({type:PRODUCT_UPDATE});
     }
 };

@@ -54,7 +54,7 @@ class Monitor extends Component{
  } 
  comfirmOrder(){
      if(this.state.order.length>0){
-    axios.post('http://localhost:3000/orders',{
+    axios.post(process.env.REACT_APP_API_URL+'/orders',{
         orderDate : new Date(),
         totalPrice :this.state.totalPrice,
         order : this.state.order

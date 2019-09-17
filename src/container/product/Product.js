@@ -36,14 +36,16 @@ class Product extends Component {
                                 <h1>Products</h1>
                             </div>
                             <div className='col-6'>
-                                <Link to='product/add'><button className='btn  btn-success title float-right' 
+                                <Link to='products/add'><button className='btn  btn-success title float-right' 
                                 onClick={()=>this.props.history.push('products')}>Add</button>
                                 </Link>
                             </div>
                         </div>   
+                        {this.props.products && Array.isArray(this.props.products) &&
                         <ProductList products={this.props.products} 
                         onDeleteProduct ={this.deleteProduct} 
                         onEditProduct={this.editProduct}/>
+                        }
                         </div>
                 <Footer Email='noppawatchotiwan@gmail.com'/>
             </div>

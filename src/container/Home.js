@@ -4,7 +4,7 @@ import Footer from'../component/Footer';
 import Monitor from'../component/monitor/Monitor';
 import About from './About'
 import {connect} from 'react-redux';
-import {productFetch } from '../actions/index';
+import {productsFetch } from '../actions/index';
 
 
 
@@ -13,7 +13,7 @@ class Home extends Component{
     super(props);
   }
      componentDidMount(){
-      this.props.productFetch();
+      this.props.productsFetch();
   }
   render(){
     
@@ -31,4 +31,4 @@ function mapStatetoProps(state){
   console.log(state)
   return{products : state.products }
 };
-export default connect(mapStatetoProps,{productFetch})(Home);
+export default connect(mapStatetoProps,{productsFetch})(Home);

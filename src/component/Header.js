@@ -38,7 +38,7 @@ class Header extends Component{
                         <ul className='list-inline'>
                             <li className='list-inline-item title'><Link to='/'>Home</Link></li>
                             <li className='list-inline-item title'><Link to='/order'>Order</Link></li>
-                            <li className='list-inline-item title'><Link to='/product'>Product</Link></li>
+                            <li className='list-inline-item title'><Link to='/products'>Product</Link></li>
                             <li className='list-inline-item title'><Link to='/about'>About</Link></li>
 
                             

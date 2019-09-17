@@ -12,23 +12,39 @@ class ProductEdit extends Component{
         }
     }
     render(){
-        const {match} = this.props;
-        console.log(this.props);
-        console.log(match);
+        const {match, formValues, products,productCreate,productUpdate} = this.props;
+        
 ;        return(
             <div>
                 <Header/>
                     <div className='container col-md-5'>
                         {match.path.indexOf('add')>0 && (
                             <div>
-                            <h2>Add</h2>
-                            <ProductForm onProductSubmit ={()=>this.props.productCreate(this.props.formValues)}/>
+                                <h2>Add</h2>
+                                {
+                                    products.saved &&(
+                                        <div className='alert alert-secondary title' role='alert'>
+                                            {products.message}
+                                            {console.log('products',products)}
+                                        </div>
+                                    )
+                                }
+                                <ProductForm onProductSubmit ={()=>productCreate(formValues)}/>
                             </div>
                         )}
-                        {match.path.indexOf('edit')>0 &&(
+
+                        {match.path.indexOf('edit')>0 && products && products.id &&(
                             <div>
-                            <h2>Edit</h2>
-                            <ProductForm onProductUpdate={()=>this.props.productUpdate(this.props.products.id,this.props.formValues)}/>
+                                <h2>Edit</h2>
+                                {
+                                    products.saved &&(
+                                        <div className='alert alert-secondary title' role='alert'>
+                                            {products.message}
+                                            {console.log('products',products)}
+                                        </div>
+                                    )
+                                }
+                                <ProductForm onProductSubmit={()=>productUpdate(products.id,formValues)}/>
                             </div>
                         )}
                     </div>
@@ -39,7 +55,7 @@ class ProductEdit extends Component{
 }
 function mapStatetoProps({form,products}){
     return {
-      formValues:  form.productForm ? form.productForm.value : null,
+      formValues:  form.productForm ? form.productForm.values : null,
         products
     };
 }
